@@ -40,7 +40,7 @@ function findBy(filter) {
   return db("users as u")
     .innerJoin("roles as r", "u.role_id", "r.role_id")
     .where("username", filter)
-    .first("user_id", "username", "password", "role_name");
+    .first("user_id", "username", "password");
 }
 
 function findById(user_id) {
@@ -54,7 +54,7 @@ function findById(user_id) {
       "role_name": "instructor"
     }
    */
-  return db("users")
+  return db("users as u")
     .innerJoin("roles as r", "u.role_id", "r.role_id")
     .where("user_id", user_id)
     .first("user_id", "username", "role_name");
